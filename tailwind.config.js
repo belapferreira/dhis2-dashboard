@@ -10,6 +10,8 @@ module.exports = {
 
     colors: {
       'app-grey-100': '#F8F9FA',
+      'app-grey-900': '#212934',
+      'app-blue-500': '#2196f3',
     },
   },
   plugins: [],
