@@ -7,6 +7,8 @@ import { Hydrate, QueryClientProvider } from '@tanstack/react-query';
 import { queryClient } from '@/services/query-client';
 import { Header } from './components/Header';
 
+import { Header } from './components/Header';
+
 const roboto = Roboto({ subsets: ['latin'], weight: ['400'] });
 
 export default function RootLayout({
