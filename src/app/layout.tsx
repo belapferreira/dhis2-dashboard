@@ -1,6 +1,7 @@
 'use client';
 
 import './globals.css';
+import { useState } from 'react';
 import { Roboto } from 'next/font/google';
 import { Hydrate, QueryClientProvider } from '@tanstack/react-query';
 
@@ -16,6 +17,8 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const [queryClient] = useState(() => new QueryClient());
+
   return (
     <html lang="en">
       <title>DHIS2 Dashboard</title>

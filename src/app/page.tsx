@@ -8,6 +8,8 @@ import { Accordion } from './components/Accordion';
 import { Box, Divider } from '@dhis2/ui';
 
 const Home = () => {
+  const { data: dashboardData } = useGetDashboards();
+
   return (
     <DashboardsProvider>
       <main className="mt-6 flex w-full justify-center px-6">
