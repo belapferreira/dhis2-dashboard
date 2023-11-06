@@ -1,7 +1,7 @@
 import { ComponentProps, ComponentRef, forwardRef } from 'react';
 import * as Accordion from '@radix-ui/react-accordion';
 
-import { Card, IconChevronDown24 } from '@dhis2/ui';
+import { IconChevronDown24 } from '@dhis2/ui';
 
 type AccordionTriggerProps = ComponentProps<typeof Accordion.Trigger>;
 

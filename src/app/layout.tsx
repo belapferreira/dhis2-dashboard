@@ -1,29 +1,44 @@
+'use client';
+
 import './globals.css';
+import { useState } from 'react';
 import { Roboto } from 'next/font/google';
+import {
+  Hydrate,
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query';
 
 import { Header } from './components/Header';
 
 const roboto = Roboto({ subsets: ['latin'], weight: ['400'] });
-
-export const metadata = {
-  title: 'DHIS2 Dashboard',
-  description: 'A list of dashboards available to a DHIS2 user',
-};
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const [queryClient] = useState(() => new QueryClient());
+
   return (
     <html lang="en">
-      <body className={roboto.className}>
-        <div className="flex min-h-screen w-full flex-col bg-app-grey-100">
-          <Header />
+      <title>DHIS2 Dashboard</title>
+      <meta
+        name="description"
+        content="A list of dashboards available to a DHIS2 user"
+      />
 
-          {children}
-        </div>
-      </body>
+      <QueryClientProvider client={queryClient}>
+        <Hydrate>
+          <body className={roboto.className}>
+            <div className="flex min-h-screen w-full flex-col bg-app-grey-100">
+              <Header />
+
+              {children}
+            </div>
+          </body>
+        </Hydrate>
+      </QueryClientProvider>
     </html>
   );
 }

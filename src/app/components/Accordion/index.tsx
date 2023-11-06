@@ -1,9 +1,16 @@
 import * as AccordionRadix from '@radix-ui/react-accordion';
 import { Divider } from '@dhis2/ui';
 
+import { Dashboard } from '@/hooks/queries/useGetDashboards';
+
+import { Loader } from '@/app/components/Loader';
 import { AccordionItem } from './AccordionItem';
 import { AccordionTrigger } from './AccordionTrigger';
 import { AccordionContent } from './AccordionContent';
+
+interface AccordionProps {
+  dashboards: Dashboard[] | undefined;
+}
 
 const items = [
   {
@@ -36,22 +43,27 @@ const items = [
   },
 ];
 
-export const Accordion = () => {
+export const Accordion = ({ dashboards }: AccordionProps) => {
+  if (!dashboards?.length) {
+    return <Loader />;
+  }
+
   return (
     <AccordionRadix.Root
       type="single"
       collapsible
+      defaultValue={dashboards[0].id}
       className="mt-6 flex w-full flex-col"
     >
-      {items.map(({ title, value, details }) => (
-        <AccordionItem key={value} value={value}>
+      {dashboards.map(({ id, displayName }) => (
+        <AccordionItem key={id} value={id}>
           <AccordionTrigger>
             <h3 className="text-lg font-semibold group-data-[state=open]:mb-5">
-              {title}
+              {displayName}
             </h3>
           </AccordionTrigger>
           <AccordionContent>
-            {details.map((detail) => (
+            {items[0].details.map((detail) => (
               <>
                 <div key={detail.description}>{detail.description}</div>
 
