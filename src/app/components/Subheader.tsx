@@ -8,7 +8,7 @@ const options = [
 export const Subheader = () => {
   return (
     <Box className="flex w-full items-center justify-between py-3">
-      <h2 className="text-app-grey-900 text-lg font-bold">Dashboards</h2>
+      <h2 className="text-lg font-bold text-app-grey-900">Dashboards</h2>
 
       <MultiSelect prefix="Filter items">
         {options.map(({ value, label }) => (

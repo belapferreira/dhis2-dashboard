@@ -15,7 +15,7 @@ export const AccordionItem = forwardRef<
     <Accordion.Item
       {...rest}
       ref={forwardedRef}
-      className="data-[state=open]:border-app-blue-500 mb-4 data-[state=open]:rounded data-[state=open]:border-2"
+      className="mb-4 data-[state=open]:rounded data-[state=open]:border-2 data-[state=open]:border-app-blue-500"
     >
       <Card className="p-5">{children}</Card>
     </Accordion.Item>
