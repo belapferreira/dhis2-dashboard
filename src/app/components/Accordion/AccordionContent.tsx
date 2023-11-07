@@ -38,10 +38,7 @@ import { DashboardItems } from '@/hooks/queries/useGetDashboardItemsById';
 
 import { Loader } from '@/app/components/Loader';
 
-type AccordionContentProps = ComponentProps<typeof Accordion.Content> & {
-  data: DashboardItems | undefined;
-  isLoading: boolean;
-};
+type AccordionContentProps = ComponentProps<typeof Accordion.Content>;
 
 const ICON = {
   MAP: IconWorld16,
