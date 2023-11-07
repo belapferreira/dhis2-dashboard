@@ -1,9 +1,11 @@
-import { Center, CircularLoader } from '@dhis2/ui';
+import { Box, Center, CircularLoader } from '@dhis2/ui';
 
 export const Loader = () => {
   return (
-    <Center>
-      <CircularLoader />
-    </Center>
+    <Box height="200px">
+      <Center>
+        <CircularLoader />
+      </Center>
+    </Box>
   );
 };

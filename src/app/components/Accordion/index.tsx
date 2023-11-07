@@ -1,7 +1,8 @@
+import { useEffect, useState } from 'react';
 import * as AccordionRadix from '@radix-ui/react-accordion';
-import { Divider } from '@dhis2/ui';
 
 import { Dashboard } from '@/hooks/queries/useGetDashboards';
+import { useGetDashboardItemsById } from '@/hooks/queries/useGetDashboardItemsById';
 
 import { Loader } from '@/app/components/Loader';
 import { AccordionItem } from './AccordionItem';
@@ -12,38 +13,24 @@ interface AccordionProps {
   dashboards: Dashboard[] | undefined;
 }
 
-const items = [
-  {
-    title: 'Antenatal Care',
-    value: 'antenatal-care',
-    details: [
-      {
-        description: 'Malaria cases reported to clinic',
-        type: 'graph',
-      },
-      {
-        description: 'This is a type text item',
-        type: 'text',
-      },
-    ],
-  },
-  {
-    title: 'Cases Malaria',
-    value: 'cases-malaria',
-    details: [
-      {
-        description: 'Malaria cases reported to clinic',
-        type: 'graph',
-      },
-      {
-        description: 'This is a type text item',
-        type: 'text',
-      },
-    ],
-  },
-];
-
 export const Accordion = ({ dashboards }: AccordionProps) => {
+  const [dashboardActive, setDashboardActive] = useState<string>('');
+
+  const firstDashboardId = dashboards && dashboards[0]?.id;
+
+  const { data: dashboardItems, isLoading } = useGetDashboardItemsById(
+    dashboardActive as string,
+    {
+      enabled: !!dashboardActive,
+    },
+  );
+
+  useEffect(() => {
+    if (firstDashboardId) {
+      setDashboardActive(firstDashboardId);
+    }
+  }, [firstDashboardId]);
+
   if (!dashboards?.length) {
     return <Loader />;
   }
@@ -51,9 +38,9 @@ export const Accordion = ({ dashboards }: AccordionProps) => {
   return (
     <AccordionRadix.Root
       type="single"
-      collapsible
-      defaultValue={dashboards[0].id}
+      value={dashboardActive}
       className="mt-6 flex w-full flex-col"
+      onValueChange={(value: string) => setDashboardActive(value)}
     >
       {dashboards.map(({ id, displayName }) => (
         <AccordionItem key={id} value={id}>
@@ -62,15 +49,9 @@ export const Accordion = ({ dashboards }: AccordionProps) => {
               {displayName}
             </h3>
           </AccordionTrigger>
-          <AccordionContent>
-            {items[0].details.map((detail) => (
-              <>
-                <div key={detail.description}>{detail.description}</div>
-
-                <Divider />
-              </>
-            ))}
-          </AccordionContent>
+          {dashboardActive === id && (
+            <AccordionContent data={dashboardItems} isLoading={isLoading} />
+          )}
         </AccordionItem>
       ))}
     </AccordionRadix.Root>
