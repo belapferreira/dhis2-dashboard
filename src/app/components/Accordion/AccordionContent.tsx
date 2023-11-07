@@ -16,14 +16,11 @@ import {
   IconVisualizationBarStacked16,
 } from '@dhis2/ui';
 
-import { DashboardItems } from '@/hooks/queries/useGetDashboardItemsById';
+import { useDashboards } from '@/hooks/useDashboards';
 
 import { Loader } from '@/app/components/Loader';
 
-type AccordionContentProps = ComponentProps<typeof Accordion.Content> & {
-  data: DashboardItems | undefined;
-  isLoading: boolean;
-};
+type AccordionContentProps = ComponentProps<typeof Accordion.Content>;
 
 const ICON = {
   MAP: IconWorld16,
@@ -51,7 +48,7 @@ export const AccordionContent = forwardRef<
   ComponentRef<typeof Accordion.Content>,
   AccordionContentProps
 >((props, forwardedRef) => {
-  const { data, isLoading, ...rest } = props;
+  const { dashboardItems: data, isLoadingItems } = useDashboards();
 
   const items = useMemo(() => {
     if (!!data) {
@@ -94,12 +91,12 @@ export const AccordionContent = forwardRef<
     }
   }, [data]);
 
-  if (isLoading) {
+  if (isLoadingItems) {
     return <Loader />;
   }
 
   return (
-    <Accordion.Content {...rest} ref={forwardedRef}>
+    <Accordion.Content {...props} ref={forwardedRef}>
       {items?.map((item) => {
         const Icon = item?.icon;
 

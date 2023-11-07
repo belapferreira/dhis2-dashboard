@@ -8,7 +8,7 @@ export interface Dashboard {
   starred: boolean;
 }
 
-interface Dashboards {
+export interface Dashboards {
   dashboards: Dashboard[];
 }
 
