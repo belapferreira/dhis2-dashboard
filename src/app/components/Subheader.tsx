@@ -26,11 +26,13 @@ export const Subheader = () => {
     <Box className="flex w-full items-center justify-between py-3">
       <h2 className="text-lg font-bold text-app-grey-900">Dashboards</h2>
 
-      <MultiSelect prefix="Filter items">
-        {options?.map(({ value, label }) => (
-          <MultiSelectOption key={value} value={value} label={label} />
-        ))}
-      </MultiSelect>
+      <div className="w-56">
+        <MultiSelect prefix="Filter items">
+          {options?.map(({ value, label }) => (
+            <MultiSelectOption key={value} value={value} label={label} />
+          ))}
+        </MultiSelect>
+      </div>
     </Box>
   );
 };
