@@ -16,7 +16,7 @@ import {
   IconVisualizationBarStacked16,
 } from '@dhis2/ui';
 
-import { useDashboards } from '@/hooks/useDashboards';
+import { useDashboards, INITIAL_OPTIONS_VALUE } from '@/hooks/useDashboards';
 
 import { Loader } from '@/app/components/Loader';
 
@@ -48,7 +48,15 @@ export const AccordionContent = forwardRef<
   ComponentRef<typeof Accordion.Content>,
   AccordionContentProps
 >((props, forwardedRef) => {
-  const { dashboardItems: data, isLoadingItems } = useDashboards();
+  const {
+    dashboardItems: data,
+    isLoadingItems,
+    selectedOptions,
+  } = useDashboards();
+
+  const isAllTypesSelected = selectedOptions?.find(
+    (option) => option === INITIAL_OPTIONS_VALUE,
+  );
 
   const items = useMemo(() => {
     if (!!data) {
@@ -61,6 +69,7 @@ export const AccordionContent = forwardRef<
               id: item.id,
               text: item?.visualization?.name,
               icon: ICON[item?.visualization?.type as Icons],
+              type,
             };
 
           case 'MAP':
@@ -68,6 +77,7 @@ export const AccordionContent = forwardRef<
               id: item.id,
               text: item?.map?.name,
               icon: ICON[type],
+              type,
             };
 
           case 'TEXT':
@@ -75,6 +85,7 @@ export const AccordionContent = forwardRef<
               id: item.id,
               text: item.text,
               icon: ICON[type],
+              type,
             };
 
           case 'MESSAGES': {
@@ -82,6 +93,7 @@ export const AccordionContent = forwardRef<
               id: item.id,
               text: 'Messages',
               icon: ICON[type],
+              type,
             };
           }
         }
@@ -91,21 +103,36 @@ export const AccordionContent = forwardRef<
     }
   }, [data]);
 
+  const itemsFiltered = useMemo(() => {
+    if (isAllTypesSelected) {
+      return items;
+    } else {
+      return items?.filter(
+        (item) => selectedOptions?.some((option) => option === item?.type),
+      );
+    }
+  }, [isAllTypesSelected, items, selectedOptions]);
+
   if (isLoadingItems) {
     return <Loader />;
   }
 
   return (
     <Accordion.Content {...props} ref={forwardedRef}>
-      {items?.map((item) => {
+      {itemsFiltered?.map((item) => {
         const Icon = item?.icon;
 
         return (
           <>
-            <div key={item?.id} className="flex items-center gap-4">
+            <div
+              key={item?.id}
+              className="text-app-grey-800 flex items-center gap-4"
+            >
               <div>{<Icon />}</div>
 
-              <Markdown>{item?.text}</Markdown>
+              <Markdown className="flex flex-col gap-2 text-app-grey-900">
+                {item?.text}
+              </Markdown>
             </div>
 
             <Divider />

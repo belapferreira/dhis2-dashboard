@@ -1,33 +1,21 @@
 import { Box, MultiSelect, MultiSelectOption } from '@dhis2/ui';
 
+import { options } from '@/constants';
 import { useDashboards } from '@/hooks/useDashboards';
 
-interface Option {
-  value: string;
-  label: string;
-}
-
 export const Subheader = () => {
-  const { dashboardItems: data } = useDashboards();
-
-  const options = data?.dashboardItems?.reduce<Option[]>((acc, curr) => {
-    const currType = curr?.type;
-
-    const currValueExists = acc?.find(({ label }) => label === currType);
-
-    if (!currValueExists) {
-      acc?.push({ value: currType, label: currType });
-    }
-
-    return acc;
-  }, []);
+  const { selectedOptions, handleChangeSelectedOptions } = useDashboards();
 
   return (
-    <Box className="flex w-full items-center justify-between py-3">
+    <Box className="flex w-full flex-col justify-between gap-4 py-3 md:flex-row md:items-center">
       <h2 className="text-lg font-bold text-app-grey-900">Dashboards</h2>
 
-      <div className="w-56">
-        <MultiSelect prefix="Filter items">
+      <div className="w-full md:w-fit md:min-w-max">
+        <MultiSelect
+          prefix="Filter items"
+          selected={selectedOptions}
+          onChange={handleChangeSelectedOptions}
+        >
           {options?.map(({ value, label }) => (
             <MultiSelectOption key={value} value={value} label={label} />
           ))}
