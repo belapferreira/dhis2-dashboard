@@ -8,12 +8,10 @@ import { AccordionTrigger } from './AccordionTrigger';
 import { AccordionContent } from './AccordionContent';
 
 export const Accordion = () => {
-  const { dashboardsData, dashboardActive, handleDashboardActiveChange } =
+  const { dashboards, dashboardActive, handleDashboardActiveChange } =
     useDashboards();
 
-  const dashboards = dashboardsData?.dashboards;
-
-  if (!dashboardsData?.dashboards?.length) {
+  if (!dashboards?.length) {
     return <Loader />;
   }
 
@@ -24,9 +22,9 @@ export const Accordion = () => {
       className="mt-6 flex w-full flex-col"
       onValueChange={handleDashboardActiveChange}
     >
-      {dashboards?.map(({ id, displayName }) => (
+      {dashboards?.map(({ id, displayName, starred }) => (
         <AccordionItem key={id} value={id}>
-          <AccordionTrigger>
+          <AccordionTrigger id={id} displayName={displayName} starred={starred}>
             <h3 className="text-lg font-semibold group-data-[state=open]:mb-5">
               {displayName}
             </h3>
