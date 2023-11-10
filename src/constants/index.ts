@@ -5,9 +5,9 @@ export type DashboardItemTypes =
   | 'TEXT'
   | 'MESSAGES';
 
-interface Option {
-  value: DashboardItemTypes;
-  label: string;
+export interface Option {
+  readonly value: DashboardItemTypes;
+  readonly label: string;
 }
 
 export const options: Option[] = [

@@ -2,11 +2,10 @@ import { ComponentProps, ComponentRef, forwardRef } from 'react';
 import * as Accordion from '@radix-ui/react-accordion';
 
 import {
-  Box,
-  IconChevronDown24,
-  IconStar24,
-  IconStarFilled24,
-} from '@dhis2/ui';
+  StarRounded,
+  ExpandMoreRounded,
+  StarOutlineRounded,
+} from '@mui/icons-material';
 
 import { Dashboard } from '@/hooks/queries/useGetDashboards';
 import { useDashboards } from '@/hooks/useDashboards';
@@ -28,10 +27,10 @@ export const AccordionTrigger = forwardRef<
       ref={forwardedRef}
       className="group flex w-full"
     >
-      <Box className="flex w-full justify-between text-app-grey-900">
+      <div className="flex w-full justify-between text-app-grey-900">
         {children}
 
-        <Box className="flex gap-4">
+        <div className="flex gap-4">
           <button
             className="h-fit"
             onClick={() =>
@@ -43,17 +42,17 @@ export const AccordionTrigger = forwardRef<
             }
           >
             {starred ? (
-              <IconStarFilled24 color="#ffa902" />
+              <StarRounded sx={{ color: '#ffa902' }} />
             ) : (
-              <IconStar24 color="#404B5A" />
+              <StarOutlineRounded sx={{ color: '#404B5A' }} />
             )}
           </button>
 
-          <Box className="self-start transition-transform duration-500 ease-[cubic-bezier(0.87,_0,_0.13,_1)] group-data-[state=open]:rotate-180">
-            <IconChevronDown24 color="#404B5A" />
-          </Box>
-        </Box>
-      </Box>
+          <div className="self-start transition-transform duration-500 ease-[cubic-bezier(0.87,_0,_0.13,_1)] group-data-[state=open]:rotate-180">
+            <ExpandMoreRounded sx={{ color: '#404B5A' }} />
+          </div>
+        </div>
+      </div>
     </Accordion.Trigger>
   );
 });
