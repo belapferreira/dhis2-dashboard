@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="public/dhis2-logo.svg" width="100px" height="30.33px"/>
+  <img src="public/dhis2-symbol.svg" width="60px" height="60px"/>
 </p>
 
 <p align="center">
