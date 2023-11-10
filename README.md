@@ -3,21 +3,21 @@
 </p>
 
 <p align="center">
+  <strong>
+    A list of dashboards available to a DHIS2 user.
+  </strong>
+</p>
+
+<p align="center">
   <img src="public/dhis2-dashboard.gif" width="80%" height="80%" max-width="100%" style="border-radius:8px" />
 </p>
 
-<strong align="center">
-  A list of dashboards available to a DHIS2 user.
-</strong>
-
-\
-&nbsp;
+<p>&nbsp;</p>
 
 > [!NOTE]
 > 👉🏻 Access: [https://dhis2-dashboard.vercel.app/](https://dhis2-dashboard.vercel.app/)
 
-\
-&nbsp;
+<p>&nbsp;</p>
 
 <p align="center">
   <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/belapferreira/dhis2-dashboard">
