@@ -123,25 +123,32 @@ export const AccordionContent = forwardRef<
 
   return (
     <Accordion.Content {...props} ref={forwardedRef}>
-      {itemsFiltered?.map((item) => {
-        const Icon = item?.icon as OverridableComponent<
-          SvgIconTypeMap<{}, 'svg'>
-        >;
+      {itemsFiltered?.length ? (
+        itemsFiltered?.map((item) => {
+          const Icon = item?.icon as OverridableComponent<
+            SvgIconTypeMap<{}, 'svg'>
+          >;
 
-        return (
-          <div key={item?.id}>
-            <div className="flex items-center gap-4 text-app-grey-800">
-              <div>{<Icon fontSize="small" />}</div>
+          return (
+            <div key={item?.id}>
+              <div className="flex items-center gap-4 text-app-grey-800">
+                <div>{<Icon fontSize="small" />}</div>
 
-              <Markdown className="flex flex-col gap-2 text-app-grey-900">
-                {item?.text}
-              </Markdown>
+                <Markdown className="flex flex-col gap-2 text-app-grey-900">
+                  {item?.text}
+                </Markdown>
+              </div>
+
+              <Divider />
             </div>
-
-            <Divider />
-          </div>
-        );
-      })}
+          );
+        })
+      ) : (
+        <p className="flex w-full justify-center text-center text-app-grey-600">
+          Theres no details to show. Please try selecting one or more different
+          types in the filter.
+        </p>
+      )}
     </Accordion.Content>
   );
 });
