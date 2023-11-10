@@ -3,6 +3,7 @@ import * as Accordion from '@radix-ui/react-accordion';
 import Markdown from 'react-markdown';
 
 import {
+  Box,
   Divider,
   IconWorld16,
   IconTextBox16,
@@ -164,16 +165,16 @@ export const AccordionContent = forwardRef<
 
         return (
           <>
-            <div
+            <Box
               key={item?.id}
               className="flex items-center gap-4 text-app-grey-800"
             >
-              <div>{<Icon />}</div>
+              <Box>{<Icon />}</Box>
 
               <Markdown className="flex flex-col gap-2 text-app-grey-900">
                 {item?.text}
               </Markdown>
-            </div>
+            </Box>
 
             <Divider />
           </>
