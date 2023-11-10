@@ -1,4 +1,4 @@
-import { ComponentProps, ComponentRef, forwardRef } from 'react';
+import { ComponentProps, ComponentRef, forwardRef, useState } from 'react';
 import * as Accordion from '@radix-ui/react-accordion';
 
 import {
@@ -17,7 +17,9 @@ export const AccordionTrigger = forwardRef<
   ComponentRef<typeof Accordion.Trigger>,
   AccordionTriggerProps
 >((props, forwardedRef) => {
-  const { id, displayName, starred, children, ...rest } = props;
+  const { id, displayName, children, starred: starredProp, ...rest } = props;
+
+  const [starred, setStarred] = useState(starredProp);
 
   const { handleChangeStarred } = useDashboards();
 
@@ -31,22 +33,24 @@ export const AccordionTrigger = forwardRef<
         {children}
 
         <div className="flex gap-4">
-          <button
+          <div
             className="h-fit"
-            onClick={() =>
+            onClick={() => {
               handleChangeStarred({
                 id,
                 displayName,
                 starred: !starred,
-              })
-            }
+              });
+
+              setStarred((previous) => !previous);
+            }}
           >
             {starred ? (
               <StarRounded sx={{ color: '#ffa902' }} />
             ) : (
               <StarOutlineRounded sx={{ color: '#404B5A' }} />
             )}
-          </button>
+          </div>
 
           <div className="self-start transition-transform duration-500 ease-[cubic-bezier(0.87,_0,_0.13,_1)] group-data-[state=open]:rotate-180">
             <ExpandMoreRounded sx={{ color: '#404B5A' }} />

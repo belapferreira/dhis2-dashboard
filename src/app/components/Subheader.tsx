@@ -1,3 +1,4 @@
+import { useId } from 'react';
 import Select from 'react-select';
 
 import { options } from '@/constants';
@@ -17,6 +18,7 @@ export const Subheader = () => {
           closeMenuOnSelect={false}
           value={selectedOptions}
           placeholder="Select any type"
+          instanceId={useId()}
           onChange={handleChangeSelectedOptions}
           classNames={{
             control: () => 'border border-app-grey-300',

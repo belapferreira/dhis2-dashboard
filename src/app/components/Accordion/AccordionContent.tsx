@@ -129,11 +129,8 @@ export const AccordionContent = forwardRef<
         >;
 
         return (
-          <>
-            <div
-              key={item?.id}
-              className="flex items-center gap-4 text-app-grey-800"
-            >
+          <div key={item?.id}>
+            <div className="flex items-center gap-4 text-app-grey-800">
               <div>{<Icon fontSize="small" />}</div>
 
               <Markdown className="flex flex-col gap-2 text-app-grey-900">
@@ -142,7 +139,7 @@ export const AccordionContent = forwardRef<
             </div>
 
             <Divider />
-          </>
+          </div>
         );
       })}
     </Accordion.Content>

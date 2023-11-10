@@ -114,10 +114,6 @@ export const DashboardsProvider = ({ children }: ProviderProps) => {
 
       const storedDashboardsData = handleGetDashboardsStored();
 
-      const dashboardsFiltered = dashboards?.filter(
-        (dashboard) => dashboard.id !== id,
-      );
-
       if (storedDashboardsData) {
         const storedDashboardsFitlered = storedDashboardsData?.filter(
           (dashboard) => dashboard.id !== id,
@@ -138,10 +134,7 @@ export const DashboardsProvider = ({ children }: ProviderProps) => {
           JSON.stringify([{ id, displayName, starred }]),
         );
       }
-
-      setDashboards([...dashboardsFiltered, { id, displayName, starred }]);
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [handleGetDashboardsStored],
   );
 
