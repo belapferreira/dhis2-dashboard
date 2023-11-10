@@ -3,18 +3,21 @@ import * as Accordion from '@radix-ui/react-accordion';
 import Markdown from 'react-markdown';
 
 import {
-  Divider,
-  IconWorld16,
-  IconTextBox16,
-  IconMessages16,
-  IconVisualizationPie16,
-  IconVisualizationLine16,
-  IconVisualizationGauge16,
-  IconVisualizationColumn16,
-  IconVisualizationLineMulti16,
-  IconVisualizationPivotTable16,
-  IconVisualizationBarStacked16,
-} from '@dhis2/ui';
+  PublicRounded,
+  FontDownloadOutlined,
+  ChatBubbleOutline,
+  PieChartRounded,
+  ShowChartRounded,
+  SpeedRounded,
+  BarChartOutlined,
+  PivotTableChartOutlined,
+  StackedBarChartOutlined,
+  SsidChartRounded,
+} from '@mui/icons-material';
+import { SvgIconTypeMap } from '@mui/material';
+import { OverridableComponent } from '@mui/material/OverridableComponent';
+
+import { Divider } from '@/app/components/Divider';
 
 import { useDashboards, INITIAL_OPTIONS_VALUE } from '@/hooks/useDashboards';
 
@@ -23,16 +26,16 @@ import { Loader } from '@/app/components/Loader';
 type AccordionContentProps = ComponentProps<typeof Accordion.Content>;
 
 const ICON = {
-  MAP: IconWorld16,
-  TEXT: IconTextBox16,
-  MESSAGES: IconMessages16,
-  PIE: IconVisualizationPie16,
-  LINE: IconVisualizationLine16,
-  GAUGE: IconVisualizationGauge16,
-  COLUMN: IconVisualizationColumn16,
-  PIVOT_TABLE: IconVisualizationPivotTable16,
-  STACKED_COLUMN: IconVisualizationBarStacked16,
-  YEAR_OVER_YEAR_LINE: IconVisualizationLineMulti16,
+  MAP: PublicRounded,
+  TEXT: FontDownloadOutlined,
+  MESSAGES: ChatBubbleOutline,
+  PIE: PieChartRounded,
+  LINE: ShowChartRounded,
+  GAUGE: SpeedRounded,
+  COLUMN: BarChartOutlined,
+  PIVOT_TABLE: PivotTableChartOutlined,
+  STACKED_COLUMN: StackedBarChartOutlined,
+  YEAR_OVER_YEAR_LINE: SsidChartRounded,
 };
 
 type Icons =
@@ -108,7 +111,8 @@ export const AccordionContent = forwardRef<
       return items;
     } else {
       return items?.filter(
-        (item) => selectedOptions?.some((option) => option === item?.type),
+        (item) =>
+          selectedOptions?.some((option) => option.value === item?.type),
       );
     }
   }, [isAllTypesSelected, items, selectedOptions]);
@@ -120,15 +124,17 @@ export const AccordionContent = forwardRef<
   return (
     <Accordion.Content {...props} ref={forwardedRef}>
       {itemsFiltered?.map((item) => {
-        const Icon = item?.icon;
+        const Icon = item?.icon as OverridableComponent<
+          SvgIconTypeMap<{}, 'svg'>
+        >;
 
         return (
           <>
             <div
               key={item?.id}
-              className="text-app-grey-800 flex items-center gap-4"
+              className="flex items-center gap-4 text-app-grey-800"
             >
-              <div>{<Icon />}</div>
+              <div>{<Icon fontSize="small" />}</div>
 
               <Markdown className="flex flex-col gap-2 text-app-grey-900">
                 {item?.text}

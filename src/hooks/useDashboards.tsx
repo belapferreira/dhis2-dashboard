@@ -7,7 +7,9 @@ import {
   useState,
 } from 'react';
 
-import { options, DashboardItemTypes } from '@/constants';
+import { MultiValue } from 'react-select';
+
+import { options, Option, DashboardItemTypes } from '@/constants';
 
 import { Dashboard } from '@/hooks/queries/useGetDashboards';
 import { DashboardItems } from '@/hooks/queries/useGetDashboardItemsById';
@@ -25,14 +27,14 @@ type ContextProps = {
   isLoadingItems: boolean;
   dashboardActive: string;
   dashboards: Dashboard[];
-  selectedOptions: DashboardItemTypes[];
+  selectedOptions: Option[];
   dashboardItems: DashboardItems | undefined;
   handleChangeStarred: (params: Dashboard) => void;
-  handleChangeSelectedOptions: (value: Value) => void;
+  handleChangeSelectedOptions: (values: MultiValue<Option | Option[]>) => void;
   handleDashboardActiveChange: (value: string) => void;
 };
 
-export const INITIAL_OPTIONS_VALUE = options[0].value;
+export const INITIAL_OPTIONS_VALUE = options[0];
 export const DASHBOARDS_STARRED_KEY = '@Dhis2:recordStarredDashboards';
 
 const DashboardsContext = createContext({} as ContextProps);
@@ -59,35 +61,36 @@ export const DashboardsProvider = ({ children }: ProviderProps) => {
     setDashboardActive(value);
   }, []);
 
-  const handleChangeSelectedOptions = useCallback((value: Value) => {
-    const values = value?.selected;
+  const handleChangeSelectedOptions = useCallback(
+    (values: MultiValue<Option | Option[]>) => {
+      const hasMoreThanOneOption = values.length > 1;
+      const isFirstSelectionAllTypes = values[0] === INITIAL_OPTIONS_VALUE;
 
-    const hasMoreThanOneOption = values?.length > 1;
-    const isFirstSelectionAllTypes = values[0] === INITIAL_OPTIONS_VALUE;
+      const isOnlyAllTypesSelected =
+        !hasMoreThanOneOption && isFirstSelectionAllTypes;
 
-    const isOnlyAllTypesSelected =
-      !hasMoreThanOneOption && isFirstSelectionAllTypes;
+      const isAllTypesSelected =
+        hasMoreThanOneOption &&
+        !isFirstSelectionAllTypes &&
+        values?.some((option) => option === INITIAL_OPTIONS_VALUE);
 
-    const isAllTypesSelected =
-      hasMoreThanOneOption &&
-      !isFirstSelectionAllTypes &&
-      values?.some((option) => option === INITIAL_OPTIONS_VALUE);
+      if (
+        values.length === 0 ||
+        values.length >= 4 ||
+        isAllTypesSelected ||
+        isOnlyAllTypesSelected
+      ) {
+        setSelectedOptions([INITIAL_OPTIONS_VALUE]);
+      } else {
+        const optionsSelected = values.filter(
+          (option) => option !== INITIAL_OPTIONS_VALUE,
+        );
 
-    if (
-      values.length === 0 ||
-      values.length >= 4 ||
-      isAllTypesSelected ||
-      isOnlyAllTypesSelected
-    ) {
-      setSelectedOptions([INITIAL_OPTIONS_VALUE]);
-    } else {
-      const optionsSelected = values.filter(
-        (option) => option !== INITIAL_OPTIONS_VALUE,
-      );
-
-      setSelectedOptions(optionsSelected);
-    }
-  }, []);
+        setSelectedOptions(optionsSelected as Option[]);
+      }
+    },
+    [],
+  );
 
   const handleGetDashboardsStored = useCallback(() => {
     const storedDashboardsStarred = localStorage.getItem(
