@@ -35,7 +35,9 @@ export const AccordionTrigger = forwardRef<
         <div className="flex gap-4">
           <div
             className="h-fit"
-            onClick={() => {
+            onClick={(event) => {
+              event.stopPropagation();
+
               handleChangeStarred({
                 id,
                 displayName,
