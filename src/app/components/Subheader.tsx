@@ -15,9 +15,14 @@ export const Subheader = () => {
           isMulti
           options={options}
           closeMenuOnSelect={false}
-          placeholder="Select any type"
           value={selectedOptions}
+          placeholder="Select any type"
           onChange={handleChangeSelectedOptions}
+          classNames={{
+            control: () => 'border border-app-grey-300',
+            multiValue: () => 'bg-app-grey-200 rounded-2xl text-[13px]',
+            multiValueLabel: () => 'text-app-grey-900',
+          }}
         />
       </div>
     </div>
