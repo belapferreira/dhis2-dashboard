@@ -1,4 +1,4 @@
-import { ComponentProps, ComponentRef, forwardRef, useCallback } from 'react';
+import { ComponentProps, ComponentRef, forwardRef } from 'react';
 import * as Accordion from '@radix-ui/react-accordion';
 
 import {
