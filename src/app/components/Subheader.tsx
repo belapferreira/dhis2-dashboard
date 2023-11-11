@@ -12,21 +12,28 @@ export const Subheader = () => {
       <h2 className="text-lg font-bold text-app-grey-900">Dashboards</h2>
 
       <div className="w-full md:w-fit md:min-w-max">
-        <Select
-          isMulti
-          options={options}
-          closeMenuOnSelect={false}
-          value={selectedOptions}
-          placeholder="Select any type"
-          instanceId={useId()}
-          classNamePrefix="react-select"
-          onChange={handleChangeSelectedOptions}
-          classNames={{
-            control: () => 'border border-app-grey-300',
-            multiValue: () => 'bg-app-grey-200 rounded-2xl text-[13px]',
-            multiValueLabel: () => 'text-app-grey-900',
-          }}
-        />
+        <form data-testid="type-selector">
+          <label className="invisible flex h-0" htmlFor="type">
+            Type
+          </label>
+          <Select
+            isMulti
+            name="type"
+            inputId="type"
+            options={options}
+            instanceId={useId()}
+            value={selectedOptions}
+            closeMenuOnSelect={false}
+            placeholder="Select any type"
+            classNamePrefix="react-select"
+            onChange={handleChangeSelectedOptions}
+            classNames={{
+              control: () => 'border border-app-grey-300',
+              multiValue: () => 'bg-app-grey-200 rounded-2xl text-[13px]',
+              multiValueLabel: () => 'text-app-grey-900',
+            }}
+          />
+        </form>
       </div>
     </div>
   );

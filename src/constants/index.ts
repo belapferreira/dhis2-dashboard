@@ -17,7 +17,7 @@ export const options: Option[] = [
   },
   {
     value: 'VISUALIZATION',
-    label: 'Visulization',
+    label: 'Visualization',
   },
   {
     value: 'MAP',

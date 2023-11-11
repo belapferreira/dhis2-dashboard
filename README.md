@@ -32,6 +32,7 @@
   <a href="#heavy_check_mark-settings">Settings</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#arrow_down_small-cloning-the-repository">Cloning the repository</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#beginner-starting-the-application">Starting the application</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#straight_ruler-running-the-tests">Running the tests</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#wrench-techs--tools--resources">Techs | Tools | Resources</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#memo-license">License</a>
 </p>
@@ -56,7 +57,9 @@ And I've chosen the Radix UI because its optimization related to accessibility.
 - Ability to "star" a dashboard;
 - Responsive page.
 
-#### Todo
+#### In progress
+
+I'm learning about unitary tests and I've already implemented a few tests and I imagine that there are many others to add.
 
 - Add tests.
 
@@ -89,6 +92,15 @@ yarn install
 
 # starting application
 yarn dev
+```
+
+### :straight_ruler: Running the tests
+
+2. Through the terminal in the directory of the project repository run the following command:
+
+```bash
+# running tests
+yarn test
 ```
 
 ### :wrench: Techs | Tools | Resources

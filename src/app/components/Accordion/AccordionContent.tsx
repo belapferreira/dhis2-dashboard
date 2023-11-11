@@ -135,7 +135,7 @@ export const AccordionContent = forwardRef<
                 <div>{<Icon fontSize="small" />}</div>
 
                 <Markdown className="flex flex-col gap-2 text-app-grey-900">
-                  {item?.text}
+                  {item?.text as string}
                 </Markdown>
               </div>
 

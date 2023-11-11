@@ -1,5 +1,11 @@
 {
-  "extends": ["next/core-web-vitals", "next", "prettier"],
+  "extends": [
+    "next/core-web-vitals",
+    "next",
+    "prettier",
+    "plugin:testing-library/react",
+    "plugin:jest-dom/recommended"
+  ],
   "plugins": ["prettier"],
   "rules": {
     "semi": [2, "always"],
