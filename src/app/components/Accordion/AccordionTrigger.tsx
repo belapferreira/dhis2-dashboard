@@ -1,4 +1,11 @@
-import { ComponentProps, ComponentRef, forwardRef, useState } from 'react';
+import {
+  ComponentProps,
+  ComponentRef,
+  forwardRef,
+  useCallback,
+  useState,
+  MouseEvent,
+} from 'react';
 import * as Accordion from '@radix-ui/react-accordion';
 
 import {
@@ -23,6 +30,21 @@ export const AccordionTrigger = forwardRef<
 
   const { handleChangeStarred } = useDashboards();
 
+  const handleClick = useCallback(
+    (event: MouseEvent<HTMLDivElement>) => {
+      event.stopPropagation();
+
+      handleChangeStarred({
+        id,
+        displayName,
+        starred: !starred,
+      });
+
+      setStarred((previous) => !previous);
+    },
+    [displayName, handleChangeStarred, id, starred],
+  );
+
   return (
     <Accordion.Trigger
       {...rest}
@@ -33,20 +55,7 @@ export const AccordionTrigger = forwardRef<
         {children}
 
         <div className="flex gap-4">
-          <div
-            className="h-fit"
-            onClick={(event) => {
-              event.stopPropagation();
-
-              handleChangeStarred({
-                id,
-                displayName,
-                starred: !starred,
-              });
-
-              setStarred((previous) => !previous);
-            }}
-          >
+          <div className="h-fit" onClick={handleClick}>
             {starred ? (
               <StarRounded sx={{ color: '#ffa902' }} />
             ) : (

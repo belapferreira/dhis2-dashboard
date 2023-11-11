@@ -19,6 +19,7 @@ export const Subheader = () => {
           value={selectedOptions}
           placeholder="Select any type"
           instanceId={useId()}
+          classNamePrefix="react-select"
           onChange={handleChangeSelectedOptions}
           classNames={{
             control: () => 'border border-app-grey-300',
