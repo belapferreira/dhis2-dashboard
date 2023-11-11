@@ -2,20 +2,6 @@ import { ComponentProps, ComponentRef, forwardRef, useMemo } from 'react';
 import * as Accordion from '@radix-ui/react-accordion';
 import Markdown from 'react-markdown';
 
-import {
-  Divider,
-  IconWorld16,
-  IconTextBox16,
-  IconMessages16,
-  IconVisualizationPie16,
-  IconVisualizationLine16,
-  IconVisualizationGauge16,
-  IconVisualizationColumn16,
-  IconVisualizationLineMulti16,
-  IconVisualizationPivotTable16,
-  IconVisualizationBarStacked16,
-} from '@dhis2/ui';
-
 import { useDashboards, INITIAL_OPTIONS_VALUE } from '@/hooks/useDashboards';
 
 import { Loader } from '@/app/components/Loader';
@@ -34,25 +20,8 @@ import {
   IconVisualizationBarStacked16,
 } from '@dhis2/ui';
 
-import { DashboardItems } from '@/hooks/queries/useGetDashboardItemsById';
-
-import { Loader } from '@/app/components/Loader';
-
 type AccordionContentProps = ComponentProps<typeof Accordion.Content>;
 
-const ICON = {
-  MAP: IconWorld16,
-  TEXT: IconTextBox16,
-  MESSAGES: IconMessages16,
-  PIE: IconVisualizationPie16,
-  LINE: IconVisualizationLine16,
-  GAUGE: IconVisualizationGauge16,
-  COLUMN: IconVisualizationColumn16,
-  PIVOT_TABLE: IconVisualizationPivotTable16,
-  STACKED_COLUMN: IconVisualizationBarStacked16,
-  YEAR_OVER_YEAR_LINE: IconVisualizationLineMulti16,
-};
-
 type Icons =
   | 'PIE'
   | 'LINE'
@@ -74,15 +43,6 @@ const ICON = {
   STACKED_COLUMN: IconVisualizationBarStacked16,
   YEAR_OVER_YEAR_LINE: IconVisualizationLineMulti16,
 };
-
-type Icons =
-  | 'PIE'
-  | 'LINE'
-  | 'GAUGE'
-  | 'COLUMN'
-  | 'PIVOT_TABLE'
-  | 'STACKED_COLUMN'
-  | 'YEAR_OVER_YEAR_LINE';
 
 export const AccordionContent = forwardRef<
   ComponentRef<typeof Accordion.Content>,
@@ -166,7 +126,7 @@ export const AccordionContent = forwardRef<
           <>
             <div
               key={item?.id}
-              className="text-app-grey-800 flex items-center gap-4"
+              className="flex items-center gap-4 text-app-grey-800"
             >
               <div>{<Icon />}</div>
 
