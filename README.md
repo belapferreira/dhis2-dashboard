@@ -11,6 +11,8 @@
 > [!IMPORTANT]
 > 👉🏻 Access: [https://dhis2-dashboard.vercel.app/](https://dhis2-dashboard.vercel.app/)
 
+<p>&nbsp;</p>
+
 <p align="center">
   <img src="public/dhis2-dashboard.gif" width="80%" height="80%" max-width="100%" style="border-radius:8px" />
 </p>
