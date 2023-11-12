@@ -1,6 +1,6 @@
 export const Loader = () => {
   return (
-    <div className="bg-gray-900 flex h-52 w-full flex-1 items-center justify-center">
+    <div className="bg-gray-900 mt-12 flex h-52 w-full flex-1 items-center justify-center">
       <svg
         width="24"
         height="24"

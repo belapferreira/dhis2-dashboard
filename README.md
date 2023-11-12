@@ -8,14 +8,12 @@
   </strong>
 </p>
 
+> [!IMPORTANT]
+> 👉🏻 Access: [https://dhis2-dashboard.vercel.app/](https://dhis2-dashboard.vercel.app/)
+
 <p align="center">
   <img src="public/dhis2-dashboard.gif" width="80%" height="80%" max-width="100%" style="border-radius:8px" />
 </p>
-
-<p>&nbsp;</p>
-
-> [!NOTE]
-> 👉🏻 Access: [https://dhis2-dashboard.vercel.app/](https://dhis2-dashboard.vercel.app/)
 
 <p>&nbsp;</p>
 
@@ -28,42 +26,57 @@
 </p>
 
 <p align="center">
-  <a href="#features">Features</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#heavy_check_mark-settings">Settings</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#computer-features">Features</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#gear-settings">Settings</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#arrow_down_small-cloning-the-repository">Cloning the repository</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#beginner-starting-the-application">Starting the application</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#straight_ruler-running-the-tests">Running the tests</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#test_tube-running-the-tests">Running the tests</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#wrench-techs--tools--resources">Techs | Tools | Resources</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#memo-license">License</a>
 </p>
 
-### Context
+### :pushpin: Context
 
-As a requirement of the technical assessment instructions the library used in this project was React using the Next.js framework. Currently, the React's team recommends choosing one of the frameworks popular in the community:
+As a requirement of the **DHIS2** technical assessment instructions, the library used in this project was React using the Next.js framework. Currently, the React's team recommends choosing one of the frameworks popular in the community:
 
 > If you want to build a new app or a new website fully with React, we recommend picking one of the React-powered frameworks popular in the community. Frameworks provide features that most apps and sites eventually need, including routing, data fetching, and generating HTML.
 
-I've used TypeScript because you can save time by avoiding bugs due to typos and other errors, it offers faster performance and the IntelliSense works better, generating a superior developer experience.
+**Major assumptions or design choices**
 
-And I've chosen the Radix UI because its optimization related to accessibility.
+1) I've used TypeScript because you can save time by avoiding bugs due to typos and other errors, it offers faster performance and the IntelliSense works better, generating a superior developer experience.
 
-### Features
+2) I've chosen the Radix UI because its optimization related to accessibility.
 
-#### Done
+3) About the usage of the Tanstack React Query, the reason is because I think it makes fetching and caching easier to manage and improve the performance of data response, improving the user experience.
 
-- List of dashboards fetched from the API;
-- Details of a specific dashboard when the dashboard card is expanded;
-- Ability to filter dashboard items of a centain type;
-- Ability to "star" a dashboard;
-- Responsive page.
+4) About the requirement *"Ability to 'star' a dashboard and persist the starred states on reload"*, I've used the `localStorage` to persist the changes. In a real application that has this functionality, it would be better if it could be saved by using the API.
 
-#### In progress
+5) I've created a *hook* called `useDashaboards` using the *Context API* to avoid *prop drilling*, organize and centralize data and functions.
+
+6) And finally, for the application deploy, I've picked the Vercel platform because I find it simple to use and also they are able to generate a preview version of the app for each commit done.
+
+> [!NOTE]
+> I tried to use the **DHIS2 UI Library** to develop the components, but I had issues to deploy the solution, so I redid the components using HTML elements with Tailwind CSS and other librarys.
+>
+> There is a branch with the code made using The DHIS2 UI Library and you can check more details there: [PR #2: create components using DHIS2 UI library](https://github.com/belapferreira/dhis2-dashboard/pull/2)
+
+### :computer: Features
+
+**Done**
+
+- [x] List of dashboards fetched from the API;
+- [x] Details of a specific dashboard when the dashboard card is expanded;
+- [x] Ability to filter dashboard items of a centain type;
+- [x] Ability to "star" a dashboard;
+- [x] Responsive page.
+
+**In progress**
 
 I'm learning about unitary tests and I've already implemented a few tests and I imagine that there are many others to add.
 
-- Add tests.
+- [ ] Add tests.
 
-### :heavy_check_mark: Settings
+### :gear: Settings
 
 The settings to execute the application on your computer are listed below.
 
@@ -94,7 +107,7 @@ yarn install
 yarn dev
 ```
 
-### :straight_ruler: Running the tests
+### :test_tube: Running the tests
 
 2. Through the terminal in the directory of the project repository run the following command:
 
