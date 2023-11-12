@@ -55,7 +55,9 @@ As a requirement of the **DHIS2** technical assessment instructions, the library
 
 5) I've created a *hook* called `useDashaboards` using the *Context API* to avoid *prop drilling*, organize and centralize data and functions.
 
-6) And finally, for the application deploy, I've picked the Vercel platform because I find it simple to use and also they are able to generate a preview version of the app for each commit done.
+6) Tailwind CSS was chosen because with it, we can use pre-built CSS classes for styling, which saves time and effort of writing custom CSS from scratch.
+
+7) And finally, for the application deploy, I've picked the Vercel platform because I find it simple to use and also they are able to generate a preview version of the app for each commit done.
 
 > [!NOTE]
 > I tried to use the **DHIS2 UI Library** to develop the components, but I had issues to deploy the solution, so I redid the components using HTML elements with Tailwind CSS and other librarys.
@@ -74,7 +76,7 @@ As a requirement of the **DHIS2** technical assessment instructions, the library
 
 **In progress**
 
-I'm learning about unitary tests and I've already implemented a few tests and I imagine that there are many others to add.
+I'm studying about unit tests, I've already implemented a few tests and there are many others to add.
 
 - [ ] Add tests.
 
