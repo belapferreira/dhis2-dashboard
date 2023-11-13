@@ -99,7 +99,7 @@ git clone https://github.com/belapferreira/dhis2-dashboard
 
 ### :beginner: Starting the application
 
-1. Open the code of the repo cloned, create a `.env.local` file and add a new variable called `NEXT_PUBLIC_API` with the API base path;
+1. Open the code of the repo cloned, create a `.env.local` file and add a new variable called `NEXT_PUBLIC_API` with the API base path.
 
 2. Through the terminal, go to the directory where the repository was cloned and run the following command:
 
@@ -113,7 +113,7 @@ yarn dev
 
 ### :test_tube: Running the tests
 
-2. Through the terminal in the directory of the project repository run the following command:
+1. Through the terminal in the directory of the project repository run the following command:
 
 ```bash
 # running tests
